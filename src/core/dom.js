@@ -25,7 +25,7 @@ export class VirtualNode {
   }
   
   // Helper function to create a virtual node
-  const createElement = (tag, props, ...children) => {
+export const createElement = (tag, props, ...children) => {
     return new VirtualNode(tag, props, children);
   };
   
