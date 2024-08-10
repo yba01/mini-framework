@@ -1,8 +1,10 @@
-import { createElement } from "../core/dom.js";
-import { navigateTo, registerRoute } from "../core/router.js";
+import { Router } from "../core/router.js";
+import HomeComponent from "./components/Home.js";
 
-registerRoute('/', ()=> {
-    document.getElementById('app').appendChild(createElement('p', {"id":"HomePrint"}, "hello").render())
-})
 
-navigateTo('/')
+const router = new Router
+
+router.registerRoute('/', HomeComponent)
+
+router.navigateTo('/')
+
