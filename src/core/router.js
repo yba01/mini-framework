@@ -1,24 +1,28 @@
-const routes = {};
+class Router {
+    constructor() {
+        this.routes = {}
+        this.currentPath = '/';
+        window.addEventListener('popstate', () => this.onRouteChange());
+    }
 
-function registerRoute(path, handler) {
-    routes[path] = handler
+    onRouteChange() {
+        this.currentPath = window.location.pathname;
+        const routeHandler = this.routes[this.currentPath] || (() => this.showNotFound())
+        routeHandler();
+    }
+
+    registerRoute(path, handler) {
+       this.routes[path] = handler
+    }
+
+    navigateTo(path) {
+        history.pushState(null, '', path)
+        this.onRouteChange();
+    }
+
+    showNotFound() {
+        console.log('not found');
+    }
 }
 
-function onRouteChange() {
-    const path = window.location.pathname;
-    const routeHandler = routes[path] || (() => showNotFound())
-    routeHandler();
-}
-
-function navigateTo(path) {
-    history.pushState(null, '', path)
-    onRouteChange();
-}
-
-function showNotFound() {
-    console.log('not found');
-}
-
-window.addEventListener('popstate', onRouteChange);
-
-export { registerRoute, navigateTo }
+export { Router }
