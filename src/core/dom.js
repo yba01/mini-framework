@@ -1,4 +1,4 @@
-export class VirtualNode {
+class VirtualNode {
     constructor(tag, props = {}, children = []) {
       this.tag = tag;
       this.props = props;
@@ -27,5 +27,4 @@ export class VirtualNode {
   // Helper function to create a virtual node
 export const createElement = (tag, props, ...children) => {
     return new VirtualNode(tag, props, children);
-  };
-  
+};

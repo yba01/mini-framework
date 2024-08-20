@@ -1,8 +1,8 @@
-import { createElement } from "../core/dom.js";
 import { navigateTo, registerRoute } from "../core/router.js";
-
+import { todoitem } from "./components/TodoItem.js";
+import { newInList } from "./components/Todolist.js";
 registerRoute('/', ()=> {
-    document.getElementById('app').appendChild(createElement('p', {"id":"HomePrint"}, "hello").render())
+    document.getElementById('app').appendChild(todoitem)
+    document.querySelector('.todo-list').appendChild(newInList(0, 'tester mini-framwork'))
 })
-
 navigateTo('/')
