@@ -1,12 +1,13 @@
 class Router {
     constructor() {
         this.routes = {}
-        this.currentPath = '/';
+        this.currentPath = '#/';
         window.addEventListener('popstate', () => this.onRouteChange());
     }
 
     onRouteChange() {
-        this.currentPath = window.location.pathname;
+        this.currentPath = window.location.hash;
+        console.log(this.currentPath)
         const routeHandler = this.routes[this.currentPath] || (() => this.showNotFound())
         routeHandler();
     }
